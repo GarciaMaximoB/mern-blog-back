@@ -20,7 +20,7 @@ const app = express();
 const salt = bcrypt.genSaltSync(10);
 const secret = "asd123";
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(cors({ credentials: true, origin: "https://mern-blog-back-33ik.onrender.com" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
