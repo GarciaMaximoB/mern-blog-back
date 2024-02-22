@@ -82,7 +82,7 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
 });
 
-app.put("/post",cors(), uploadMiddleware.single("file"), async (req, res) => {
+app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
   let newPath = null;
   if (req.file) {
     const { originalname, path } = req.file;
@@ -118,7 +118,7 @@ app.put("/post",cors(), uploadMiddleware.single("file"), async (req, res) => {
   });
 });
 
-app.post('/post',cors(), uploadMiddleware.single('file'), async (req,res) => {
+app.post('/post', uploadMiddleware.single('file'), async (req,res) => {
   const {originalname,path} = req.file;
   const parts = originalname.split('.');
   const ext = parts[parts.length - 1];
@@ -136,6 +136,8 @@ app.post('/post',cors(), uploadMiddleware.single('file'), async (req,res) => {
       cover:newPath,
       author:info.id,
     });
+    console.log(req.headers)
+    console.log(res.headers)
     res.json(postDoc);
   });
 
