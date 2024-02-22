@@ -23,8 +23,6 @@ const secret = "asd123";
 app.use(
   cors({
     credentials: true,
-    origin: 'https://mern-blog-front-kohl.vercel.app',
-    
   })
 );
 app.use(express.json());
