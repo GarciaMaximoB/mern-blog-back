@@ -6,6 +6,12 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
+app.use(
+  cors({
+    credentials: true,
+    origin: 'https://mern-blog-front-kohl.vercel.app'
+  })
+);
 const uploadMiddleware = multer({
   dest: "uploads/",
   limits: {
@@ -24,12 +30,7 @@ const secret = "asd123";
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
-app.use(
-  cors({
-    credentials: true,
-    origin: 'https://mern-blog-front-kohl.vercel.app'
-  })
-);
+
 
 mongoose.connect(
   "mongodb+srv://maximogarcia:9kdndZsyXVefBBuG@cluster0.ngbwiva.mongodb.net/?retryWrites=true&w=majority"
