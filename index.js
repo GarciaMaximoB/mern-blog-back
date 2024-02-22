@@ -24,6 +24,7 @@ app.use(
   cors({
     credentials: true,
     origin: 'https://mern-blog-front-kohl.vercel.app',
+    
   })
 );
 app.use(express.json());
@@ -81,7 +82,7 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
 });
 
-app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
+app.put("/post",cors(), uploadMiddleware.single("file"), async (req, res) => {
   let newPath = null;
   if (req.file) {
     const { originalname, path } = req.file;
@@ -117,7 +118,7 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
   });
 });
 
-app.post('/post', uploadMiddleware.single('file'), async (req,res) => {
+app.post('/post',cors(), uploadMiddleware.single('file'), async (req,res) => {
   const {originalname,path} = req.file;
   const parts = originalname.split('.');
   const ext = parts[parts.length - 1];
