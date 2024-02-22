@@ -23,7 +23,7 @@ const secret = "asd123";
 app.use(
   cors({
     credentials: true,
-    origin: "https://mern-blog-front-kohl.vercel.app",
+    origin: 'https://mern-blog-front-kohl.vercel.app',
   })
 );
 app.use(express.json());
@@ -90,7 +90,6 @@ app.put("/post", uploadMiddleware.single("file"), async (req, res) => {
     newPath = path + "." + ext;
     fs.renameSync(path, newPath);
   }
-
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
