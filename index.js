@@ -124,7 +124,8 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res) => {
   const ext = parts[parts.length - 1];
   const newPath = path+'.'+ext;
   fs.renameSync(path, newPath);
-
+console.log(req.headers)
+    console.log(res.headers)
   const {token} = req.cookies;
   jwt.verify(token, secret, {}, async (err,info) => {
     if (err) throw err;
@@ -136,8 +137,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res) => {
       cover:newPath,
       author:info.id,
     });
-    console.log(req.headers)
-    console.log(res.headers)
+    
     res.json(postDoc);
   });
 
